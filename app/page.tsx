@@ -4,6 +4,7 @@ import Stats from '@/components/stats';
 import About from '@/components/about';
 import Dates from '@/components/dates';
 import Papers from '@/components/papers';
+import PastEdition from '@/components/past-edition';
 import Speakers from '@/components/speakers';
 import Program from '@/components/program';
 import Venue from '@/components/venue';
@@ -20,6 +21,7 @@ export default function Home() {
       <About />
       <Dates />
       <Papers />
+  <PastEdition />
       <Speakers />
       <Program />
       <Venue />
