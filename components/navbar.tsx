@@ -37,8 +37,9 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-8 py-4 md:py-5">
         <div className="flex items-center justify-between">
-          <Link href="/" className="text-lg font-light tracking-[0.15em] text-black">
-            RIPU<span className="font-semibold">26</span>
+          <Link href="/" className="text-lg font-light tracking-[0.15em] text-black flex items-center gap-2">
+            <span>RIPU</span>
+            <span className="font-semibold text-[#2F0461]/40">26</span>
           </Link>
           
           <div className="hidden md:flex items-center gap-8">
@@ -76,7 +77,12 @@ export default function Navbar() {
               ))}
             </div>
 
-            <Link href="/registration" className="text-xs font-light tracking-wide text-black border border-black px-5 py-2 hover:bg-black hover:text-white transition-all duration-300">Register</Link>
+            <Link
+              href="/registration"
+              className="text-xs font-light tracking-wide text-black border border-black px-5 py-2 transition-all duration-300 hover:border-[#2F0461]/20 hover:bg-[#7b2cbf]/5 hover:text-black"
+            >
+              Register
+            </Link>
           </div>
         </div>
       </div>

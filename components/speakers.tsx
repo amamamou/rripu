@@ -45,6 +45,7 @@ export default function Speakers() {
                   country={speaker.country}
                   bio={speaker.bio}
                   image={speaker.photo}
+                  colored={true}
                 />
               </a>
             </motion.div>
