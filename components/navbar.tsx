@@ -79,7 +79,7 @@ export default function Navbar() {
 
             <Link
               href="/registration"
-              className="text-xs font-light tracking-wide text-black border border-black px-5 py-2 transition-all duration-300 hover:border-[#2F0461]/20 hover:bg-[#7b2cbf]/5 hover:text-black"
+              className="text-xs font-light tracking-wide text-black border border-[#2F0461] px-5 py-2 transition-all duration-300 hover:border-[#2F0461] hover:bg-[#7b2cbf]/5 hover:text-black"
             >
               Register
             </Link>

@@ -5,6 +5,7 @@ import About from '@/components/about';
 import Dates from '@/components/dates';
 import Papers from '@/components/papers';
 import PastEdition from '@/components/past-edition';
+import Testimonials from '@/components/testimonials';
 import Speakers from '@/components/speakers';
 import Program from '@/components/program';
 import Venue from '@/components/venue';
@@ -14,13 +15,14 @@ import Footer from '@/components/footer';
 
 export default function Home() {
   return (
-    <main className="w-full min-h-screen bg-[#0a0a0a]">
+    <main className="w-full min-h-screen">
       <Navbar />
       <Hero />
       <About />
       <Dates />
       <Papers />
   <PastEdition />
+    <Testimonials />
       <Speakers />
       <Venue />
       <Sponsors />

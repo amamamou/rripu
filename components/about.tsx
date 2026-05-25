@@ -47,7 +47,7 @@ export default function About() {
             </div>
 
             <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extralight tracking-tight leading-[0.98] text-black">
-              A global forum for research, pedagogy, and academic exchange.
+              Enseigner et évaluer à l’ère de l’IA et de l’APC
             </h2>
 
             <p className="mt-8 text-sm md:text-base text-neutral-500 leading-relaxed max-w-xl">

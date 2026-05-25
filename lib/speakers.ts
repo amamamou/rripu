@@ -5,7 +5,7 @@ export const speakers = [
     affiliation: 'Cairo University',
     country: 'Egypt',
     specialty: 'Educational Technology',
-  photo: '/rym.jpg',
+  photo: '/speaker-1.jpg',
     bio: 'Prof. Ahmed Hassan is a leading researcher in educational technology with a focus on blended learning, large-scale deployments of edtech platforms, and evaluation of learning outcomes in higher education.'
   },
   {
@@ -32,7 +32,7 @@ export const speakers = [
     affiliation: 'UAE University',
     country: 'UAE',
     specialty: 'Curriculum Innovation',
-  photo: '/rym.jpg',
+  photo: '/speaker-1.jpg',
     bio: 'Dr. Fatima focuses on curriculum innovation and inclusive pedagogies, especially in cross-cultural higher education contexts.'
   },
   {

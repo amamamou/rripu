@@ -7,11 +7,11 @@ const _geist = Geist({ subsets: ["latin"] });
 const _geistMono = Geist_Mono({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'RIPU 2026 - International Conference on Research & Innovation',
+  title: 'RIPU 2026',
   description: 'Join RIPU 2026 in Sousse, Tunisia. An international conference on research and innovation in pedagogy and universities.',
   generator: 'v0.app',
   openGraph: {
-    title: 'RIPU 2026 - International Conference on Research & Innovation',
+    title: 'RIPU 2026',
     description: 'Join RIPU 2026 in Sousse, Tunisia. An international conference on research and innovation in pedagogy and universities.',
     type: 'website',
   },
@@ -43,7 +43,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="font-sans antialiased bg-white text-black">
+      <body suppressHydrationWarning={true} className="font-sans antialiased bg-white text-black">
         {children}
         {process.env.NODE_ENV === 'production' && <Analytics />}
       </body>
