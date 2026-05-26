@@ -21,6 +21,7 @@ export default function Navbar() {
     { label: 'Program', href: '/program' },
     { label: 'Speakers', href: '/speakers' },
     { label: 'Committee', href: '/committee' },
+    { label: 'Past Editions', href: '/ripu-archive' },
     { label: 'Venue', href: '/venue' },
     { label: 'Registration', href: '/registration' },
     { label: 'Publications', href: '/publications' },
@@ -49,25 +50,7 @@ export default function Navbar() {
               </Link>
             ))}
 
-            <div className="relative group">
-              <button aria-haspopup="true" aria-expanded="false" className="text-xs font-light tracking-wide text-gray-700 hover:text-black transition-colors duration-300">Past Editions</button>
-              <div className="absolute right-0 mt-2 w-64 bg-white border border-gray-100 shadow-sm hidden group-hover:block group-focus-within:block">
-                <div className="p-2">
-                  <div className="grid grid-cols-1 gap-1">
-                      <Link href="/ripu25" className="flex items-center gap-3 p-2 rounded-md hover:bg-gray-50 transition">
-                        <div className="w-10 h-10 rounded-md bg-gray-50 flex items-center justify-center text-sm font-medium text-slate-700 border border-gray-100">25</div>
-                        <div className="leading-tight">
-                          <div className="text-sm font-medium text-slate-900">RIPU25 — Sousse</div>
-                          <div className="text-xs text-slate-500">30–31 May 2025</div>
-                        </div>
-                      </Link>
-                    </div>
-                </div>
-                <div className="border-t px-3 py-2 text-xs text-slate-500">
-                  <Link href="/ripu-archive" className="text-slate-700 hover:underline">View all past editions →</Link>
-                </div>
-              </div>
-            </div>
+          
 
             <div className="hidden lg:flex items-center gap-6">
               {navItems.slice(5).map((item) => (
@@ -77,12 +60,17 @@ export default function Navbar() {
               ))}
             </div>
 
-            <Link
-              href="/registration"
-              className="text-xs font-light tracking-wide text-black border border-[#2F0461] px-5 py-2 transition-all duration-300 hover:border-[#2F0461] hover:bg-[#7b2cbf]/5 hover:text-black"
-            >
-              Register
-            </Link>
+            <div className="inline-flex items-center">
+              <Link
+                href="/registration"
+                className="group relative text-xs font-light tracking-wide text-black border border-[#2F0461] px-5 py-2 transition-all duration-300 hover:pr-8 hover:border-[#2F0461] hover:bg-[#7b2cbf]/5 hover:text-black inline-flex items-center"
+              >
+                <span>Register</span>
+                <svg className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 text-[#2F0461]" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+                  <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              </Link>
+            </div>
           </div>
         </div>
       </div>

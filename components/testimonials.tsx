@@ -133,10 +133,6 @@ export default function VoicesFromRIPU25Carousel() {
         {/* Header Section */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-14 md:mb-20">
           <div className="lg:col-span-7">
-            <div className="inline-block mb-4 px-3 py-1 rounded-full bg-secondary text-[11px] tracking-widest uppercase text-secondary-foreground">
-              Testimonials
-            </div>
-
             <h2
               id="voices-title"
               className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight text-foreground max-w-2xl"
@@ -147,14 +143,12 @@ export default function VoicesFromRIPU25Carousel() {
 
           <div className="lg:col-span-5 flex flex-col items-start lg:items-end gap-4">
             <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
-              Convertify has helped businesses across industries enhance their
-              performance and achieve their goals. Read firsthand accounts from
-              attendees and organisers.
+              Reflections from RIPU25 attendees: how the programme shaped practice, informed research, and built lasting professional connections across institutions.
             </p>
 
             <div className="flex items-center gap-3">
               <button className="inline-flex items-center px-4 py-2 border border-border rounded-full text-sm text-foreground hover:bg-secondary transition-colors duration-200">
-                Get Started Now
+                Register Now
                 <svg
                   className="ml-2 w-4 h-4"
                   viewBox="0 0 24 24"
@@ -281,7 +275,7 @@ const TestimonialCard = ({ testimonial: t }: { testimonial: Testimonial }) => (
       <div className="border-t border-neutral-100 group-hover:border-white/20 pt-4 transition-colors duration-300 mt-auto">
         <div className="flex items-center gap-3">
           {t.image && (
-            <div className="relative w-11 h-11 rounded-full overflow-hidden flex-shrink-0 border border-neutral-200 group-hover:border-white/30">
+            <div className="relative w-11 h-11 rounded-md overflow-hidden flex-shrink-0">
               <Image
                 src={t.image}
                 alt={t.name}
