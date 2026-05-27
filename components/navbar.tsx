@@ -18,13 +18,11 @@ export default function Navbar() {
   const navItems = [
     { label: 'About', href: '/about' },
     { label: 'Call for Papers', href: '/call-for-papers' },
-    { label: 'Program', href: '/program' },
     { label: 'Speakers', href: '/speakers' },
     { label: 'Committee', href: '/committee' },
     { label: 'Past Editions', href: '/ripu-archive' },
     { label: 'Venue', href: '/venue' },
     { label: 'Registration', href: '/registration' },
-    { label: 'Publications', href: '/publications' },
     { label: 'Contact', href: '/contact' },
   ];
 
@@ -32,7 +30,7 @@ export default function Navbar() {
     <motion.nav
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className={`fixed w-full top-0 z-50 transition-all duration-300 ${
+      className={`fixed w-full top-0 z-50 transition-all duration-300 font-[family-name:var(--font-montserrat)] ${
         scrolled ? 'bg-white border-b border-gray-200' : 'bg-white'
       }`}
     >
@@ -63,10 +61,10 @@ export default function Navbar() {
             <div className="inline-flex items-center">
               <Link
                 href="/registration"
-                className="group relative text-xs font-light tracking-wide text-black border border-[#2F0461] px-5 py-2 transition-all duration-300 hover:pr-8 hover:border-[#2F0461] hover:bg-[#7b2cbf]/5 hover:text-black inline-flex items-center"
+                className="group relative text-xs font-light tracking-wide text-black border border-[#1B1142] px-5 py-2 transition-all duration-300 hover:pr-8 hover:border-[#1B1142] hover:bg-[#A64DFF]/5 hover:text-black inline-flex items-center"
               >
-                <span>Register</span>
-                <svg className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 text-[#2F0461]" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
+                <span>Soummetre une communication</span>
+                <svg className="absolute right-3 top-1/2 -translate-y-1/2 opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-200 text-[#1B1142]" width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden>
                   <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
               </Link>

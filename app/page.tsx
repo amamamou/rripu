@@ -19,14 +19,12 @@ export default function Home() {
       <Navbar />
       <Hero />
       <About />
-      <Dates />
       <Papers />
-  <PastEdition />
-    <Testimonials />
       <Speakers />
-      <Venue />
-      <Sponsors />
+        <PastEdition />
+          <Testimonials />
       <Contact />
+
       <Footer />
     </main>
   );

@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import useEmblaCarousel from "embla-carousel-react";
 
@@ -49,114 +49,124 @@ const TESTIMONIALS: Testimonial[] = [
     title: "Visiting Researcher",
     org: "International Institute",
     image: "/rym.jpg",
-    rating: 5,
+    rating: 4,
     text: "Excellent interdisciplinary exchange and professional organisation. Curated sessions made networking purposeful and the overall tone was polished.",
   },
 ];
 
-const StarRating = ({ rating = 5 }: { rating: number }) => (
-  <div className="flex items-center gap-1.5">
-    {Array.from({ length: 5 }).map((_, i) => (
-      <svg
-        key={i}
-        width="14"
-        height="14"
-        viewBox="0 0 24 24"
-        fill={i < rating ? "currentColor" : "none"}
-        stroke="currentColor"
-        strokeWidth="1.5"
-        className={i < rating ? "text-amber-400" : "text-neutral-200"}
-      >
-        <polygon points="12 2 15.09 10.26 24 10.35 17.77 16.01 20.16 24.02 12 18.77 3.84 24.02 6.23 16.01 0 10.35 8.91 10.26 12 2" />
-      </svg>
-    ))}
-  </div>
-);
-
-const QuoteIcon = ({ color = "#2F0461" }: { color?: string }) => (
-  <svg
-    width="32"
-    height="32"
-    viewBox="0 0 32 32"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M10.2 15.4C10.2 11.8 12.3 9.3 15.7 8L16.5 9.6C14.1 10.8 13 12.5 13 14.8H16.2V21H9.8V15.4H10.2Z"
-      fill={color}
-    />
-    <path
-      d="M22.2 15.4C22.2 11.8 24.3 9.3 27.7 8L28.5 9.6C26.1 10.8 25 12.5 25 14.8H28.2V21H21.8V15.4H22.2Z"
-      fill={color}
-    />
-  </svg>
-);
-
-export default function VoicesFromRIPU25Carousel() {
+export default function VoicesFromRIPU25() {
   const inViewRef = useRef<HTMLElement | null>(null);
   const reduceMotion = useReducedMotion();
-  const inView = useInView(inViewRef, { once: true, amount: 0.2 });
-  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", loop: false });
+  const inView = useInView(inViewRef, {
+    once: true,
+    amount: 0.2,
+  });
+
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    align: "start",
+    loop: false,
+  });
+
   const [canScrollPrev, setCanScrollPrev] = useState(false);
   const [canScrollNext, setCanScrollNext] = useState(true);
 
-  const onSelect = () => {
+  useEffect(() => {
     if (!emblaApi) return;
-    setCanScrollPrev(emblaApi.canScrollPrev());
-    setCanScrollNext(emblaApi.canScrollNext());
-  };
+
+    const update = () => {
+      setCanScrollPrev(emblaApi.canScrollPrev());
+      setCanScrollNext(emblaApi.canScrollNext());
+    };
+
+    update();
+    emblaApi.on("select", update);
+
+    return () => {
+      emblaApi.off("select", update);
+    };
+  }, [emblaApi]);
 
   const scrollPrev = () => emblaApi?.scrollPrev();
   const scrollNext = () => emblaApi?.scrollNext();
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.08, delayChildren: 0.1 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 12 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
 
   return (
     <section
       id="testimonials"
       ref={inViewRef}
       aria-labelledby="voices-title"
-      className="w-full bg-background border-t border-border"
+      className="relative overflow-hidden bg-[#F7F4FF] pb-32 md:pb-44"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 py-14 md:py-20">
-        {/* Header Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start mb-14 md:mb-20">
-          <div className="lg:col-span-7">
-            <h2
-              id="voices-title"
-              className="text-4xl md:text-5xl lg:text-6xl font-light tracking-tight leading-tight text-foreground max-w-2xl"
-            >
-              Trusted by satisfied participants
-            </h2>
-          </div>
 
-          <div className="lg:col-span-5 flex flex-col items-start lg:items-end gap-4">
-            <p className="text-sm text-muted-foreground max-w-md leading-relaxed">
-              Reflections from RIPU25 attendees: how the programme shaped practice, informed research, and built lasting professional connections across institutions.
+      {/* subtle atmosphere */}
+      <div className="absolute bottom-[-15%] left-[-10%] w-[600px] h-[600px] rounded-full bg-[#A64DFF]/[0.04] blur-[140px]" />
+
+      <div className="relative max-w-7xl mx-auto px-6 md:px-10">
+
+        {/* divider continuity */}
+        <div className="border-t border-[#1B1142]/[0.06] pt-24 md:pt-32">
+
+          {/* HEADER */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12">
+
+            <div className="max-w-3xl">
+
+              <div className="flex items-center gap-4 mb-7">
+
+                <div className="w-8 h-px bg-[#A64DFF]/40" />
+
+                <span className="text-[10px] uppercase tracking-[0.28em] text-[#6C2EB7]/65">
+                  Témoignages
+                </span>
+
+              </div>
+
+              <h2
+                id="voices-title"
+                className="text-4xl md:text-6xl font-extralight tracking-tight leading-[0.96] text-[#1B1142]"
+              >
+                Ce que les participants retiennent de RIPU25.
+              </h2>
+
+            </div>
+
+            <p className="max-w-md text-sm md:text-base leading-relaxed text-[#1B1142]/52">
+              Retours d’expérience autour des conférences,
+              ateliers et échanges interdisciplinaires vécus durant RIPU25.
             </p>
 
-            <div className="flex items-center gap-3">
-              <button className="inline-flex items-center px-4 py-2 border border-border rounded-full text-sm text-foreground hover:bg-secondary transition-colors duration-200">
-                Register Now
-                <svg
-                  className="ml-2 w-4 h-4"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden
-                >
+          </div>
+
+          {/* MOBILE CAROUSEL */}
+          <div className="md:hidden mt-16">
+
+            <div className="overflow-hidden" ref={emblaRef}>
+
+              <div className="flex gap-5">
+
+                {TESTIMONIALS.map((t) => (
+                  <div
+                    key={t.id}
+                    className="min-w-[88%]"
+                  >
+                    <TestimonialCard testimonial={t} />
+                  </div>
+                ))}
+
+              </div>
+
+            </div>
+
+            {/* controls */}
+            <div className="flex items-center justify-center gap-3 mt-8">
+
+              <button
+                onClick={scrollPrev}
+                disabled={!canScrollPrev}
+                className="w-9 h-9 rounded-full border border-[#1B1142]/10 bg-white/60 flex items-center justify-center disabled:opacity-30 transition-all duration-300"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
                   <path
-                    d="M5 12h14M13 5l7 7-7 7"
+                    d="M15 18l-6-6 6-6"
                     stroke="currentColor"
                     strokeWidth="1.5"
                     strokeLinecap="round"
@@ -165,142 +175,158 @@ export default function VoicesFromRIPU25Carousel() {
                 </svg>
               </button>
 
-              {/* desktop arrows removed per request */}
+              <button
+                onClick={scrollNext}
+                disabled={!canScrollNext}
+                className="w-9 h-9 rounded-full border border-[#1B1142]/10 bg-white/60 flex items-center justify-center disabled:opacity-30 transition-all duration-300"
+              >
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M9 6l6 6-6 6"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </button>
+
             </div>
+
           </div>
+
+          {/* DESKTOP GRID */}
+          <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-7 mt-20">
+
+            {TESTIMONIALS.map((t, index) => (
+              <motion.div
+                key={t.id}
+                initial={reduceMotion ? undefined : { opacity: 0, y: 18 }}
+                animate={
+                  inView
+                    ? reduceMotion
+                      ? {}
+                      : { opacity: 1, y: 0 }
+                    : {}
+                }
+                transition={{
+                  duration: 0.7,
+                  delay: index * 0.06,
+                }}
+              >
+                <TestimonialCard testimonial={t} />
+              </motion.div>
+            ))}
+
+          </div>
+
         </div>
 
-        {/* Mobile Carousel - visible on mobile only */}
-        <div className="md:hidden">
-          <div className="overflow-hidden" ref={emblaRef}>
-            <div className="flex gap-4 px-4">
-              {TESTIMONIALS.map((t) => (
-                <div key={t.id} className="min-w-[86%] max-w-[420px] flex-shrink-0 mx-auto">
-                  <TestimonialCard testimonial={t} />
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile Carousel Controls */}
-          <div className="flex items-center justify-center gap-2 mt-6">
-            <button
-              onClick={scrollPrev}
-              disabled={!canScrollPrev}
-              className="w-8 h-8 flex items-center justify-center border border-border hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M15 18l-6-6 6-6"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-            <button
-              onClick={scrollNext}
-              disabled={!canScrollNext}
-              className="w-8 h-8 flex items-center justify-center border border-border hover:bg-secondary disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
-                <path
-                  d="M9 6l6 6-6 6"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </button>
-          </div>
-        </div>
-
-        {/* Desktop Grid - visible on desktop only */}
-        <motion.div
-          initial={reduceMotion ? undefined : "hidden"}
-          animate={inView ? "show" : "hidden"}
-          variants={containerVariants}
-          className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {TESTIMONIALS.slice(0, 4).map((t) => (
-            <motion.div key={t.id} variants={itemVariants}>
-              <TestimonialCard testimonial={t} />
-            </motion.div>
-          ))}
-        </motion.div>
       </div>
+
     </section>
   );
 }
 
-const TestimonialCard = ({ testimonial: t }: { testimonial: Testimonial }) => (
+const TestimonialCard = ({
+  testimonial: t,
+}: {
+  testimonial: Testimonial;
+}) => (
   <motion.article
-    whileHover={{ y: -4 }}
-    className="group relative bg-white border border-neutral-200 overflow-hidden hover:shadow-2xl transition-all duration-300 h-full flex flex-col"
+    whileHover={{ y: -3 }}
+    className="
+      group
+      relative
+      overflow-hidden
+      rounded-[28px]
+      bg-white/55
+      backdrop-blur-sm
+      border border-white/60
+      p-8 md:p-9
+      transition-all
+      duration-500
+      hover:bg-white/72
+      h-full
+    "
   >
-    {/* Background Image Overlay (visible on hover) */}
-    {t.image && (
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0">
-        <Image
-          src={t.image}
-          alt={t.name}
-          fill
-          className="object-cover"
-        />
-        {/* Dark overlay for readability */}
-        <div className="absolute inset-0 bg-black/45" />
-      </div>
-    )}
 
-    {/* Content */}
-    <div className="relative z-10 p-6 flex flex-col h-full gap-4">
-      {/* Quote Icon */}
-      <div className="flex-shrink-0">
-        <QuoteIcon />
-      </div>
+    {/* subtle glow */}
+    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-[radial-gradient(circle_at_top_right,rgba(166,77,255,0.08),transparent_55%)]" />
 
-      {/* Stars */}
-      <div className="flex-shrink-0">
-        <StarRating rating={t.rating || 5} />
-      </div>
+    <div className="relative z-10 flex flex-col h-full">
 
-      {/* Testimonial Text */}
-      <p className="text-sm leading-relaxed text-neutral-700 flex-grow group-hover:text-white transition-colors duration-300">
-        {t.text}
-      </p>
+      {/* top */}
+      <div className="flex items-start justify-between gap-6">
 
-      {/* Author Info with Profile Image */}
-      <div className="border-t border-neutral-100 group-hover:border-white/20 pt-4 transition-colors duration-300 mt-auto">
-        <div className="flex items-center gap-3">
+        {/* profile */}
+        <div className="flex items-center gap-4 min-w-0">
+
           {t.image && (
-            <div className="relative w-11 h-11 rounded-md overflow-hidden flex-shrink-0">
+            <div className="relative w-14 h-14 rounded-full overflow-hidden flex-shrink-0 ring-1 ring-black/5">
+
               <Image
                 src={t.image}
                 alt={t.name}
                 fill
                 className="object-cover"
               />
+
             </div>
           )}
+
           <div className="min-w-0">
-            <p className="font-semibold text-sm text-neutral-900 group-hover:text-white transition-colors duration-300 truncate">
+
+            <div className="text-[15px] text-[#1B1142]/90 truncate">
               {t.name}
-            </p>
-            {t.title && (
-              <p className="text-xs text-neutral-600 group-hover:text-white/70 transition-colors duration-300 truncate">
-                {t.title}
-              </p>
+            </div>
+
+            {(t.title || t.org) && (
+              <div className="mt-1 text-[11px] uppercase tracking-[0.18em] text-[#1B1142]/38 truncate">
+
+                {[t.title, t.org]
+                  .filter(Boolean)
+                  .join(" · ")}
+
+              </div>
             )}
-            {t.org && (
-              <p className="text-xs text-neutral-500 group-hover:text-white/60 transition-colors duration-300 truncate">
-                {t.org}
-              </p>
-            )}
+
           </div>
-          </div>
+
         </div>
+
+        {/* elegant rating */}
+        <div className="flex items-center gap-1.5 pt-1">
+
+          {Array.from({
+            length: t.rating || 5,
+          }).map((_, i) => (
+            <div
+              key={i}
+              className="w-1.5 h-1.5 rounded-full bg-[#A64DFF]/65"
+            />
+          ))}
+
+        </div>
+
       </div>
+
+      {/* quote */}
+      <div className="mt-10 flex-1">
+
+        <div className="text-[#A64DFF]/35 text-4xl font-extralight leading-none mb-6">
+          ”
+        </div>
+
+        <p className="text-[17px] leading-[1.75] tracking-tight text-[#1B1142]/78 font-light">
+
+          {t.text}
+
+        </p>
+
+      </div>
+
+    </div>
+
   </motion.article>
 );
